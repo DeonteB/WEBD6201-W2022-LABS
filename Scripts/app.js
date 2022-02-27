@@ -386,22 +386,44 @@
         $("#" + fieldID).on("blur", function()
         {
             let text_value = $(this).val();
+  
             if(!regular_expression.test(text_value))
             {
                 $(this).trigger("focus").trigger("select");
                 errorMessage.addClass("alert alert-danger").text(error_message).show();
             }
+           
             else
             {
                 errorMessage.removeAttr("class").hide();
             }
         });
+
+        $("#" + fieldID).on("blur", function()
+        {
+           // let text_value = $(this).val();
+            let password = $("#password").val();
+            let confirmpassword = $("#confirmPassword").val();
+        if(password == confirmpassword)
+        {
+            
+        } 
+        else
+        {
+            
+            errorMessage.addClass("alert alert-danger").text(error_message).show();
+        }
+
+        
+        });
     }
         function RegisterPageValidation()
     {
-        ValidateField("fullName", /^([A-Z][a-z]{1,3}.?\s)?([A-Z][a-z]{1,})((\s|,|-)([A-Z][a-z]{1,}))*(\s|,|-)([A-Z][a-z]{1,})$/, "Please enter a valid Full Name. This must include at least a Capitalized First Name and a Capitalized Last Name.");
-        ValidateField("contactNumber", /^(\+\d{1,3}\s)?\(?\d{3}\)?[\s.-]?\d{3}[\s.-]?\d{4}$/, "Please enter a valid Contact Number. Example: (416) 555-5555");
-        ValidatePage("emailAddress", /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,10}$/, "Please enter a valid Email Address.");
+        ValidatePage("FirstName", /([A-Z][a-z]{1,})$/, "Please enter a valid First Name. This must include at least a Capitalized First Letter and a two character name.");
+        ValidatePage("lastName",  /([A-Z][a-z]{1,})$/, "Please enter a valid Last Name. This must include at least a Capitalized First Letter and a two character name.");
+        ValidatePage("password", /[a-zA-Z0-9._-]{6,}$/, "Please enter a valid Password must be over 6 character");
+        ValidatePage("confirmPassword", /[a-zA-Z0-9._-]{6,}$/, "Confirm Password should match Password");
+        ValidatePage("emailAddress", /[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,8}/g, "Please enter a valid Email Address.");
     }
 
      function displayRegisterPage()
