@@ -378,10 +378,57 @@
 
     
 
-    function displayRegisterPage()
+    function ValidatePage(fieldID, regular_expression, error_message)
     {
-        console.log("Register Page");
+
+        let errorMessage = $("#errorMessage").hide();
+    
+        $("#" + fieldID).on("blur", function()
+        {
+            let text_value = $(this).val();
+            if(!regular_expression.test(text_value))
+            {
+                $(this).trigger("focus").trigger("select");
+                errorMessage.addClass("alert alert-danger").text(error_message).show();
+            }
+            else
+            {
+                errorMessage.removeAttr("class").hide();
+            }
+        });
     }
+        function RegisterPageValidation()
+    {
+        ValidateField("fullName", /^([A-Z][a-z]{1,3}.?\s)?([A-Z][a-z]{1,})((\s|,|-)([A-Z][a-z]{1,}))*(\s|,|-)([A-Z][a-z]{1,})$/, "Please enter a valid Full Name. This must include at least a Capitalized First Name and a Capitalized Last Name.");
+        ValidateField("contactNumber", /^(\+\d{1,3}\s)?\(?\d{3}\)?[\s.-]?\d{3}[\s.-]?\d{4}$/, "Please enter a valid Contact Number. Example: (416) 555-5555");
+        ValidatePage("emailAddress", /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,10}$/, "Please enter a valid Email Address.");
+    }
+
+     function displayRegisterPage()
+    {
+
+    //$("main").append(`<div id="errorMessage"> </div>`);
+        console.log("Register Page");
+        
+        RegisterPageValidation();
+       
+        let submitButton = document.getElementById("submitButton");
+/* 
+        submitButton.addEventListener("click", function(event)
+        {
+
+            if(subscribeCheckbox.checked)
+            {
+                let contact = new core.Contact(fullName.value, contactNumber.value, emailAddress.value);
+                if(contact.serialize())
+                {
+                    let key = contact.FullName.substring(0, 1) + Date.now();
+
+                    localStorage.setItem(key, contact.serialize());
+                }
+            }
+        }); */
+    } 
 
     // named function option
     function Start()
