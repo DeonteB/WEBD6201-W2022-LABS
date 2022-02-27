@@ -322,6 +322,9 @@
 
                 // redireact the user to the secure area of the site - contact-list.html
                 location.href = "contact-list.html";
+
+                
+
             }
             else
             {
@@ -358,6 +361,10 @@
                 `<a id="logout" class="nav-link" href="#"><i class="fas fa-sign-out-alt"></i> Log out</a>`
 
             );
+
+           // $("#nav").html("DisplayName");
+               
+           $("#nav").html();
 
             $("#logout").on("click", function()
             {
@@ -419,3 +426,4 @@
     window.addEventListener("load", Start);
 
 })();
+
