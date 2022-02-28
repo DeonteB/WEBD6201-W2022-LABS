@@ -198,11 +198,7 @@
 
             contactList.innerHTML = data;
 
-            $("#addButton").on("click", ()=>
-            {
-                location.href = "edit.html#add";
-            });
-
+           
             $("button.delete").on("click", function()
             {
                 if(confirm("Are you sure?"))
@@ -217,6 +213,12 @@
                 location.href = "edit.html#" + $(this).val();
             });
         }
+
+        $("#addButton").on("click", ()=>
+        {
+            location.href = "edit.html#add";
+        });
+
     }
 
     /**
@@ -393,6 +395,7 @@
         let ErrorMessage = $("#ErrorMessage").hide();
         let password = $("#password").val();
         let confirmpassword = $("#confirmPassword").val();
+       
         $("#" + fieldID).on("blur", function()
         {
             let text_value = $(this).val();
@@ -409,25 +412,25 @@
             }
         });
 
-        /*  $("#" + fieldID).on("blur", function()
+       /*   $("#" + fieldID).on("blur", function()
         {
-           // let text_value = $(this).val();
-            let password = $("#password").val();
-            let confirmpassword = $("#confirmPassword").val();
-        if(password == confirmpassword)
+        //Was going to be for password matching couldn't get it to work fully   
+       /*  if(password == confirmpassword)
         {
-            $(this).trigger("focus").trigger("select");
-            ErrorMessage.addClass("alert alert-danger").text(error_message).show();
+            ErrorMessage.removeAttr("class").hide();
         } 
         else
         {
             
-            ErrorMessage.removeAttr("class").hide();
+            $(this).trigger("focus").trigger("select");
+            ErrorMessage.addClass("alert alert-danger").text(error_message).show();
         } 
 
         
-        });  */
-    }
+        });   */
+    } 
+
+    //This function is for validating the user for the register page
         function RegisterPageValidation()
     {
         ValidatePage("FirstName", /([A-Z][a-z]{1,})$/, "Please enter a valid First Name. This must include at least a Capitalized First Letter and a two character name.");
@@ -439,27 +442,28 @@
 
      function displayRegisterPage()
     {
-
-    $("main").append(`<div id="ErrorMessage"> </div>`);
+        //Displays a error message 
+        $("main").append(`<div id="ErrorMessage"> </div>`);
         console.log("Register Page");
         
         RegisterPageValidation();
        
-        //let submitButton = document.getElementById("submitButton");
+       
 
         submitButton.addEventListener("click", function(event)
         {
 
             event.preventDefault();
-            document.forms[0].reset
+            document.forms[0].reset();
            
+            
                
                 $("#submitButton").on("click", (event) =>
                 {
                    
-                    event.preventDefault();
+                
                    //Clears the form
-                    document.forms[0].reset();
+                    
 
                    
 
