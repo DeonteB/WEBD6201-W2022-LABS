@@ -53,6 +53,7 @@
     {
         $("header").html(html_data);
         $(`li>a:contains(${document.title})`).addClass("active"); // update active link
+        
         CheckLogin();
     }
 
@@ -315,6 +316,7 @@
                  //if username and passsword mathches succes -> perfrom the login sequaence
             if(success)
             {
+                
                 sessionStorage.setItem("user", newUser.serialize());
 
                 //hide any error message
@@ -323,7 +325,7 @@
                 // redireact the user to the secure area of the site - contact-list.html
                 location.href = "contact-list.html";
 
-                
+               
 
             }
             else
@@ -353,18 +355,24 @@
 
     function CheckLogin()
     {
-        // if th euser is login then 
+        
+       //let data = "users";
+
+        // if the user is login then 
         if(sessionStorage.getItem("user"))
         {
+            let data = "user";
             //swap out the login link for 
             $("#login").html(
                 `<a id="logout" class="nav-link" href="#"><i class="fas fa-sign-out-alt"></i> Log out</a>`
 
             );
-
+            //let data = "users";
+            console.log(data.Username)
            // $("#nav").html("DisplayName");
-               
-           $("#nav").html();
+           document.querySelector("#nav").innerText = data.Username;
+           console.log(this.Username)
+          // document.querySelector("#nav").innerHTML(data.Username);
 
             $("#logout").on("click", function()
             {
@@ -382,7 +390,8 @@
     {
 
         let errorMessage = $("#errorMessage").hide();
-    
+        let password = $("#password").val();
+        let confirmpassword = $("#confirmPassword").val();
         $("#" + fieldID).on("blur", function()
         {
             let text_value = $(this).val();
@@ -406,16 +415,17 @@
             let confirmpassword = $("#confirmPassword").val();
         if(password == confirmpassword)
         {
-            
+            $(this).trigger("focus").trigger("select");
+            errorMessage.addClass("alert alert-danger").text(error_message).show();
         } 
         else
         {
             
-            errorMessage.addClass("alert alert-danger").text(error_message).show();
+            errorMessage.removeAttr("class").hide();
         }
 
         
-        });
+        }); 
     }
         function RegisterPageValidation()
     {
@@ -429,7 +439,7 @@
      function displayRegisterPage()
     {
 
-    //$("main").append(`<div id="errorMessage"> </div>`);
+    $("").append(`<div id="errorMessage"> </div>`);
         console.log("Register Page");
         
         RegisterPageValidation();
