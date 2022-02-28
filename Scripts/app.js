@@ -361,6 +361,7 @@
         // if the user is login then 
         if(sessionStorage.getItem("user"))
         {
+           // let newUser= new core.User();
             let data = "user";
             //swap out the login link for 
             $("#login").html(
@@ -368,12 +369,12 @@
 
             );
             //let data = "users";
-            console.log(data.Username)
+            console.log(data.newUser)
            // $("#nav").html("DisplayName");
            document.querySelector("#nav").innerText = data.Username;
            console.log(this.Username)
           // document.querySelector("#nav").innerHTML(data.Username);
-
+               
             $("#logout").on("click", function()
             {
             //perform logout
@@ -389,7 +390,7 @@
     function ValidatePage(fieldID, regular_expression, error_message)
     {
 
-        let errorMessage = $("#errorMessage").hide();
+        let ErrorMessage = $("#ErrorMessage").hide();
         let password = $("#password").val();
         let confirmpassword = $("#confirmPassword").val();
         $("#" + fieldID).on("blur", function()
@@ -399,16 +400,16 @@
             if(!regular_expression.test(text_value))
             {
                 $(this).trigger("focus").trigger("select");
-                errorMessage.addClass("alert alert-danger").text(error_message).show();
+                ErrorMessage.addClass("alert alert-danger").text(error_message).show();
             }
            
             else
             {
-                errorMessage.removeAttr("class").hide();
+                ErrorMessage.removeAttr("class").hide();
             }
         });
 
-        $("#" + fieldID).on("blur", function()
+        /*  $("#" + fieldID).on("blur", function()
         {
            // let text_value = $(this).val();
             let password = $("#password").val();
@@ -416,16 +417,16 @@
         if(password == confirmpassword)
         {
             $(this).trigger("focus").trigger("select");
-            errorMessage.addClass("alert alert-danger").text(error_message).show();
+            ErrorMessage.addClass("alert alert-danger").text(error_message).show();
         } 
         else
         {
             
-            errorMessage.removeAttr("class").hide();
-        }
+            ErrorMessage.removeAttr("class").hide();
+        } 
 
         
-        }); 
+        });  */
     }
         function RegisterPageValidation()
     {
@@ -439,27 +440,69 @@
      function displayRegisterPage()
     {
 
-    $("").append(`<div id="errorMessage"> </div>`);
+    $("main").append(`<div id="ErrorMessage"> </div>`);
         console.log("Register Page");
         
         RegisterPageValidation();
        
-        let submitButton = document.getElementById("submitButton");
-/* 
+        //let submitButton = document.getElementById("submitButton");
+
         submitButton.addEventListener("click", function(event)
         {
 
-            if(subscribeCheckbox.checked)
-            {
-                let contact = new core.Contact(fullName.value, contactNumber.value, emailAddress.value);
-                if(contact.serialize())
+            event.preventDefault();
+            document.forms[0].reset
+           
+               
+                $("#submitButton").on("click", (event) =>
                 {
-                    let key = contact.FullName.substring(0, 1) + Date.now();
+                   
+                    event.preventDefault();
+                   //Clears the form
+                    document.forms[0].reset();
 
-                    localStorage.setItem(key, contact.serialize());
-                }
-            }
-        }); */
+                   
+
+                   /* First way of trying to send informatian to console log.
+                        let user = newUser(fullName, contactNumber, emailAddress);
+                    if(user.serialize())
+                    {
+                        console.log(user)
+                    } */
+  
+                    // get changes from the page
+                   // let user = new core.displayName;
+                
+                   // user.deserialize(console.getItem(page));
+
+                    // display the contact in the edit form
+
+                    //Seond way of trying to do send infomation to console log.
+                   /*  $("#FirstName").val(FirstName);
+                    $("#lastName").val(lastName);
+                    $("#emailAddress").val(EmailAddress);
+
+
+                    $("#submitButton").on("click", (event) =>
+                    {
+                        event.preventDefault();
+                        
+                        // get changes from the page
+                        FirstName = $("#FirstName").val();
+                        lastName = $("#lastName").val();
+                        EmailAddress = $("#emailAddress").val();
+
+                        // replace the item in local storage
+                       // console.setItem(page, user.serialize());
+                        // go back to the contact list page (refresh)
+                        console.log(FirstName,lastName,  EmailAddress)
+                    }); */
+                    
+              
+                });
+                
+          
+        }); 
     } 
 
     // named function option
