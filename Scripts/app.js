@@ -1,3 +1,10 @@
+/**
+ * Deonte Bayliss
+ * Lab 2 - WEBD6201 - Client-Side Scripting
+ * February 28 2022
+ * jQuery & Form Validation
+ */
+
 /* IIFE immediately Invoked Funtion Expression */
 
 //const { computeStyles } = require("@popperjs/core");
