@@ -54,6 +54,7 @@ router.AddTable([
     "/contact-list",
     "/products",
     "/register",
+    "/task-list",
     "/login",
     "/edit"
 ]);

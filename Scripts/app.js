@@ -268,6 +268,68 @@
     }
     function Display404Page() {
     }
+    function AddNewTask() {
+        let messageArea = $("#messageArea");
+        messageArea.hide();
+        let taskInput = $("#taskTextInput");
+        let taskInputValue = taskInput.val();
+        if (taskInput.val() != "" && taskInputValue.charAt(0) != " ") {
+            let newElement = `
+               <li class="list-group-item" id="task">
+               <span id="taskText">${taskInput.val()}</span>
+               <span class="float-end">
+                   <button class="btn btn-outline-primary btn-sm editButton"><i class="fas fa-edit"></i>
+                   <button class="btn btn-outline-danger btn-sm deleteButton"><i class="fas fa-trash-alt"></i></button>
+               </span>
+               <input type="text" class="form-control edit-task editTextInput">
+               </li>
+               `;
+            $("#taskList").append(newElement);
+            messageArea.removeAttr("class").hide();
+            taskInput.val("");
+        }
+        else {
+            taskInput.trigger("focus").trigger("select");
+            messageArea.show().addClass("alert alert-danger").text("Please enter a valid Task.");
+        }
+    }
+    function DisplayTaskList() {
+        let messageArea = $("#messageArea");
+        messageArea.hide();
+        let taskInput = $("#taskTextInput");
+        $("#newTaskButton").on("click", function () {
+            AddNewTask();
+        });
+        taskInput.on("keypress", function (event) {
+            if (event.key == "Enter") {
+                AddNewTask();
+            }
+        });
+        $("ul").on("click", ".editButton", function () {
+            let editText = $(this).parent().parent().children(".editTextInput");
+            let text = $(this).parent().parent().text();
+            let editTextValue = editText.val();
+            editText.val(text).show().trigger("select");
+            editText.on("keypress", function (event) {
+                if (event.key == "Enter") {
+                    if (editText.val() != "" && editTextValue.charAt(0) != " ") {
+                        editText.hide();
+                        $(this).parent().children("#taskText").text(editTextValue);
+                        messageArea.removeAttr("class").hide();
+                    }
+                    else {
+                        editText.trigger("focus").trigger("select");
+                        messageArea.show().addClass("alert alert-danger").text("Please enter a valid Task.");
+                    }
+                }
+            });
+        });
+        $("ul").on("click", ".deleteButton", function () {
+            if (confirm("Are you sure?")) {
+                $(this).closest("li").remove();
+            }
+        });
+    }
     function ActiveLinkCallBack() {
         switch (router.ActiveLink) {
             case "home": return DisplayHomePage;
