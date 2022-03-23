@@ -276,7 +276,6 @@
         messageArea.hide();
         let taskInput = $("#taskTextInput");
         let taskInputValue = taskInput.val();
-        let callback = DisplayTaskList();
         if (taskInput.val() != "" && taskInputValue.charAt(0) != " ") {
             let newElement = `
                <li class="list-group-item" id="task">
@@ -291,7 +290,6 @@
             $("#taskList").append(newElement);
             messageArea.removeAttr("class").hide();
             taskInput.val("");
-            callback();
         }
         else {
             taskInput.trigger("focus").trigger("select");
@@ -335,7 +333,6 @@
             }
             LoadLink("task-list");
         });
-        return new Function();
     }
     function ActiveLinkCallBack() {
         switch (router.ActiveLink) {

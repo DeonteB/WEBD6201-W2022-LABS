@@ -524,6 +524,7 @@
     {
 
     }
+
     /* let page_name = router.ActiveLink; // alias for the Active Link
     let callback = ActiveLinkCallBack(); // returns a reference to the correct function
     $.get(`./Views/content/${page_name}.html`, function(html_date)
@@ -540,8 +541,8 @@
        messageArea.hide();
        let taskInput = $("#taskTextInput");
        let taskInputValue = taskInput.val() as string;
-       let callback = DisplayTaskList();
-
+     // let callback = DisplayTaskList();
+      
        if (taskInput.val() != "" && taskInputValue.charAt(0) != " ") 
        {
          let newElement = `
@@ -554,18 +555,22 @@
                <input type="text" class="form-control edit-task editTextInput">
                </li>
                `;
+               
          $("#taskList").append(newElement);
+        
          messageArea.removeAttr("class").hide();
          taskInput.val("");
-         callback();
+       
+         
        } 
        else 
        {
          taskInput.trigger("focus").trigger("select");
          messageArea.show().addClass("alert alert-danger").text("Please enter a valid Task.");
-         
+        
        }
-       
+      //return new Function(); 
+     
      }
  
      /**
@@ -577,8 +582,9 @@
          let messageArea = $("#messageArea");
          messageArea.hide();
          let taskInput = $("#taskTextInput");
- 
+         //let callback = AddNewTask();
          // add a new Task to the Task List
+        
          $("#newTaskButton").on("click", function()
          {         
              AddNewTask();
@@ -617,7 +623,7 @@
              }
             });
          });
- 
+         
          // Delete a Task from the Task List
          $("ul").on("click", ".deleteButton", function(){
              if(confirm("Are you sure?"))
@@ -626,9 +632,10 @@
                  
              }  
              LoadLink("task-list");
+          
          });
          
-         return new Function();  
+         //return new Function();  
      }
 
     /**
