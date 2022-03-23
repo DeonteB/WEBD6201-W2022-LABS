@@ -1,3 +1,9 @@
+/**
+ * Deonte Bayliss
+ * Lab 3 - WEBD6201 - Client-Side Scripting
+ * 03-23-2022
+ * fun With Ajax
+ */
 // IIFE -- Immediately Invoked Function Expression
 // AKA -- Anonymous Self-Executing Function
 (function()
@@ -534,7 +540,7 @@
        messageArea.hide();
        let taskInput = $("#taskTextInput");
        let taskInputValue = taskInput.val() as string;
-       let callbacks = DisplayTaskList();
+       let callback = DisplayTaskList();
 
        if (taskInput.val() != "" && taskInputValue.charAt(0) != " ") 
        {
@@ -551,7 +557,7 @@
          $("#taskList").append(newElement);
          messageArea.removeAttr("class").hide();
          taskInput.val("");
-         
+         callback();
        } 
        else 
        {
@@ -559,14 +565,14 @@
          messageArea.show().addClass("alert alert-danger").text("Please enter a valid Task.");
          
        }
-       callbacks();
+       
      }
  
      /**
       * This function is the Callback function for the TaskList
       *
       */
-     function DisplayTaskList() : Function
+     function DisplayTaskList() //: Function
      {
          let messageArea = $("#messageArea");
          messageArea.hide();
@@ -617,9 +623,11 @@
              if(confirm("Are you sure?"))
              {
                  $(this).closest("li").remove();
+                 
              }  
-            
+             LoadLink("task-list");
          });
+         
          return new Function();  
      }
 

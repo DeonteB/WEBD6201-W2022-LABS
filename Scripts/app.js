@@ -276,7 +276,7 @@
         messageArea.hide();
         let taskInput = $("#taskTextInput");
         let taskInputValue = taskInput.val();
-        let callbacks = DisplayTaskList();
+        let callback = DisplayTaskList();
         if (taskInput.val() != "" && taskInputValue.charAt(0) != " ") {
             let newElement = `
                <li class="list-group-item" id="task">
@@ -291,12 +291,12 @@
             $("#taskList").append(newElement);
             messageArea.removeAttr("class").hide();
             taskInput.val("");
+            callback();
         }
         else {
             taskInput.trigger("focus").trigger("select");
             messageArea.show().addClass("alert alert-danger").text("Please enter a valid Task.");
         }
-        callbacks();
     }
     function DisplayTaskList() {
         let messageArea = $("#messageArea");
@@ -333,6 +333,7 @@
             if (confirm("Are you sure?")) {
                 $(this).closest("li").remove();
             }
+            LoadLink("task-list");
         });
         return new Function();
     }
