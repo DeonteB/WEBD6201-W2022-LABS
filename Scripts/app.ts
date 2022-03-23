@@ -43,7 +43,7 @@
         $(`li>a:contains(${document.title})`).addClass("active"); // updates the Active link on Navigation items
 
         CheckLogin();
-
+        // ChangeTask();
         LoadContent();
     }
 
@@ -111,7 +111,7 @@
             $("header").html(html_data);
 
             AddNavigationEvents();
-            
+           // ChangeTask();
             CheckLogin();
         });
     }
@@ -386,7 +386,7 @@
                 break;
         }
     }
-    function ChangeTask(): void
+   /*  function ChangeTask(): void
     {
         if(sessionStorage.getItem("user"))
         {
@@ -400,9 +400,6 @@
                 sessionStorage.clear();
 
                  // swap out the logout link for login
-                $("#login").html(
-                    `<a class="nav-link" data="login"><i class="fas fa-sign-in-alt"></i> Login</a>`
-                );
                 $("#task-list").html(
                     `<a class="nav-link" data="task-list"><i class="fas fa-list"></i> Task List</a>`
                 );
@@ -412,7 +409,7 @@
                 LoadLink("login");
             });
         }
-    }
+    } */
     function CheckLogin(): void
     {
         // if user is logged in
@@ -422,9 +419,9 @@
             $("#login").html(
                 `<a id="logout" class="nav-link" href="#"><i class="fas fa-sign-out-alt"></i> Logout</a>`
             );
-            $("#task-list").html(
-                `<a id="task-list" class="nav-link" href="#"><i class="fas fa-list-check"></i> Task-List</a>`
-            );
+            $("task-list").appendTo(
+                `<a class="nav-link" data="task-list"><i class="fas fa-th-list"></i> Task-List </a>`
+            ); 
             $("#logout").on("click", function()
             {
                 // perform logout
@@ -537,7 +534,7 @@
        messageArea.hide();
        let taskInput = $("#taskTextInput");
        let taskInputValue = taskInput.val() as string;
-       let callback = DisplayTaskList();
+       let callbacks = DisplayTaskList();
 
        if (taskInput.val() != "" && taskInputValue.charAt(0) != " ") 
        {
@@ -554,13 +551,15 @@
          $("#taskList").append(newElement);
          messageArea.removeAttr("class").hide();
          taskInput.val("");
-         callback();
+         
        } 
        else 
        {
          taskInput.trigger("focus").trigger("select");
          messageArea.show().addClass("alert alert-danger").text("Please enter a valid Task.");
+         
        }
+       callbacks();
      }
  
      /**
@@ -618,9 +617,10 @@
              if(confirm("Are you sure?"))
              {
                  $(this).closest("li").remove();
-             }    
+             }  
+            
          });
-         return new Function();
+         return new Function();  
      }
 
     /**
@@ -639,6 +639,7 @@
             case "contact": return DisplayContactPage;
             case "contact-list": return DisplayContactListPage;
             case "edit": return DisplayEditPage;
+            case "task-list": return DisplayTaskList;
             case "login": return DisplayLoginPage;
             case "register": return DisplayRegisterPage;
             case "404": return Display404Page;

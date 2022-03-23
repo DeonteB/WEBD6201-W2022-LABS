@@ -218,22 +218,10 @@
                 break;
         }
     }
-    function ChangeTask() {
-        if (sessionStorage.getItem("user")) {
-            $("#task-list").html(`<a id="task-list" class="nav-link" href="#"><i class="fas fa-list-check"></i> Task-List</a>`);
-            $("#logout").on("click", function () {
-                sessionStorage.clear();
-                $("#login").html(`<a class="nav-link" data="login"><i class="fas fa-sign-in-alt"></i> Login</a>`);
-                $("#task-list").html(`<a class="nav-link" data="task-list"><i class="fas fa-list"></i> Task List</a>`);
-                AddNavigationEvents();
-                LoadLink("login");
-            });
-        }
-    }
     function CheckLogin() {
         if (sessionStorage.getItem("user")) {
             $("#login").html(`<a id="logout" class="nav-link" href="#"><i class="fas fa-sign-out-alt"></i> Logout</a>`);
-            $("#task-list").html(`<a id="task-list" class="nav-link" href="#"><i class="fas fa-list-check"></i> Task-List</a>`);
+            $("task-list").appendTo(`<a class="nav-link" data="task-list"><i class="fas fa-th-list"></i> Task-List </a>`);
             $("#logout").on("click", function () {
                 sessionStorage.clear();
                 $("#login").html(`<a class="nav-link" data="login"><i class="fas fa-sign-in-alt"></i> Login</a>`);
@@ -288,7 +276,7 @@
         messageArea.hide();
         let taskInput = $("#taskTextInput");
         let taskInputValue = taskInput.val();
-        let callback = DisplayTaskList();
+        let callbacks = DisplayTaskList();
         if (taskInput.val() != "" && taskInputValue.charAt(0) != " ") {
             let newElement = `
                <li class="list-group-item" id="task">
@@ -303,12 +291,12 @@
             $("#taskList").append(newElement);
             messageArea.removeAttr("class").hide();
             taskInput.val("");
-            callback();
         }
         else {
             taskInput.trigger("focus").trigger("select");
             messageArea.show().addClass("alert alert-danger").text("Please enter a valid Task.");
         }
+        callbacks();
     }
     function DisplayTaskList() {
         let messageArea = $("#messageArea");
@@ -357,6 +345,7 @@
             case "contact": return DisplayContactPage;
             case "contact-list": return DisplayContactListPage;
             case "edit": return DisplayEditPage;
+            case "task-list": return DisplayTaskList;
             case "login": return DisplayLoginPage;
             case "register": return DisplayRegisterPage;
             case "404": return Display404Page;
