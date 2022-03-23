@@ -1,7 +1,8 @@
 "use strict";
 ((function () {
     let protected_routes = [
-        "contact-list"
+        "contact-list",
+        "task-lisk"
     ];
     if (protected_routes.indexOf(router.ActiveLink) > -1) {
         if (!sessionStorage.getItem("user")) {

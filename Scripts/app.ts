@@ -5,9 +5,11 @@
     function AuthGuard(): void
     {
         let protected_routes: string[] = [
-            "contact-list"
+            "contact-list",
+            "task-list"
         ];
-    
+
+       
     
         if(protected_routes.indexOf(router.ActiveLink) > -1)
         {
@@ -384,17 +386,14 @@
                 break;
         }
     }
-
-    function CheckLogin(): void
+    function ChangeTask(): void
     {
-        // if user is logged in
         if(sessionStorage.getItem("user"))
         {
             // swap out the login link for logout
-            $("#login").html(
-                `<a id="logout" class="nav-link" href="#"><i class="fas fa-sign-out-alt"></i> Logout</a>`
+            $("#task-list").html(
+                `<a id="task-list" class="nav-link" href="#"><i class="fas fa-list-check"></i> Task-List</a>`
             );
-            
             $("#logout").on("click", function()
             {
                 // perform logout
@@ -404,7 +403,40 @@
                 $("#login").html(
                     `<a class="nav-link" data="login"><i class="fas fa-sign-in-alt"></i> Login</a>`
                 );
+                $("#task-list").html(
+                    `<a class="nav-link" data="task-list"><i class="fas fa-list"></i> Task List</a>`
+                );
+                AddNavigationEvents();
 
+                // redirect back to login
+                LoadLink("login");
+            });
+        }
+    }
+    function CheckLogin(): void
+    {
+        // if user is logged in
+        if(sessionStorage.getItem("user"))
+        {
+            // swap out the login link for logout
+            $("#login").html(
+                `<a id="logout" class="nav-link" href="#"><i class="fas fa-sign-out-alt"></i> Logout</a>`
+            );
+            $("#task-list").html(
+                `<a id="task-list" class="nav-link" href="#"><i class="fas fa-list-check"></i> Task-List</a>`
+            );
+            $("#logout").on("click", function()
+            {
+                // perform logout
+                sessionStorage.clear();
+
+                 // swap out the logout link for login
+                $("#login").html(
+                    `<a class="nav-link" data="login"><i class="fas fa-sign-in-alt"></i> Login</a>`
+                );
+                $("#task-list").html(
+                    `<a class="nav-link" data="task-list"><i class="fas fa-list"></i> Task List</a>`
+                );
                 AddNavigationEvents();
 
                 // redirect back to login
@@ -489,7 +521,13 @@
     {
 
     }
-
+    /* let page_name = router.ActiveLink; // alias for the Active Link
+    let callback = ActiveLinkCallBack(); // returns a reference to the correct function
+    $.get(`./Views/content/${page_name}.html`, function(html_date)
+    {
+        $("main").html(html_date);
+        callback(); // calling the correct function 
+    }); */
     /**
      * This function adds a new Task to the TaskList
      */
@@ -499,7 +537,8 @@
        messageArea.hide();
        let taskInput = $("#taskTextInput");
        let taskInputValue = taskInput.val() as string;
- 
+       let callback = DisplayTaskList();
+
        if (taskInput.val() != "" && taskInputValue.charAt(0) != " ") 
        {
          let newElement = `
@@ -515,6 +554,7 @@
          $("#taskList").append(newElement);
          messageArea.removeAttr("class").hide();
          taskInput.val("");
+         callback();
        } 
        else 
        {
@@ -527,7 +567,7 @@
       * This function is the Callback function for the TaskList
       *
       */
-     function DisplayTaskList()
+     function DisplayTaskList() : Function
      {
          let messageArea = $("#messageArea");
          messageArea.hide();
@@ -580,6 +620,7 @@
                  $(this).closest("li").remove();
              }    
          });
+         return new Function();
      }
 
     /**

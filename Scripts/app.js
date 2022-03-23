@@ -2,7 +2,8 @@
 (function () {
     function AuthGuard() {
         let protected_routes = [
-            "contact-list"
+            "contact-list",
+            "task-list"
         ];
         if (protected_routes.indexOf(router.ActiveLink) > -1) {
             if (!sessionStorage.getItem("user")) {
@@ -217,12 +218,26 @@
                 break;
         }
     }
-    function CheckLogin() {
+    function ChangeTask() {
         if (sessionStorage.getItem("user")) {
-            $("#login").html(`<a id="logout" class="nav-link" href="#"><i class="fas fa-sign-out-alt"></i> Logout</a>`);
+            $("#task-list").html(`<a id="task-list" class="nav-link" href="#"><i class="fas fa-list-check"></i> Task-List</a>`);
             $("#logout").on("click", function () {
                 sessionStorage.clear();
                 $("#login").html(`<a class="nav-link" data="login"><i class="fas fa-sign-in-alt"></i> Login</a>`);
+                $("#task-list").html(`<a class="nav-link" data="task-list"><i class="fas fa-list"></i> Task List</a>`);
+                AddNavigationEvents();
+                LoadLink("login");
+            });
+        }
+    }
+    function CheckLogin() {
+        if (sessionStorage.getItem("user")) {
+            $("#login").html(`<a id="logout" class="nav-link" href="#"><i class="fas fa-sign-out-alt"></i> Logout</a>`);
+            $("#task-list").html(`<a id="task-list" class="nav-link" href="#"><i class="fas fa-list-check"></i> Task-List</a>`);
+            $("#logout").on("click", function () {
+                sessionStorage.clear();
+                $("#login").html(`<a class="nav-link" data="login"><i class="fas fa-sign-in-alt"></i> Login</a>`);
+                $("#task-list").html(`<a class="nav-link" data="task-list"><i class="fas fa-list"></i> Task List</a>`);
                 AddNavigationEvents();
                 LoadLink("login");
             });
@@ -273,6 +288,7 @@
         messageArea.hide();
         let taskInput = $("#taskTextInput");
         let taskInputValue = taskInput.val();
+        let callback = DisplayTaskList();
         if (taskInput.val() != "" && taskInputValue.charAt(0) != " ") {
             let newElement = `
                <li class="list-group-item" id="task">
@@ -287,6 +303,7 @@
             $("#taskList").append(newElement);
             messageArea.removeAttr("class").hide();
             taskInput.val("");
+            callback();
         }
         else {
             taskInput.trigger("focus").trigger("select");
@@ -329,6 +346,7 @@
                 $(this).closest("li").remove();
             }
         });
+        return new Function();
     }
     function ActiveLinkCallBack() {
         switch (router.ActiveLink) {
