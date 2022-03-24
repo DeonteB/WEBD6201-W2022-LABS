@@ -117,7 +117,7 @@
             $("header").html(html_data);
 
             AddNavigationEvents();
-           // ChangeTask();
+           
             CheckLogin();
         });
     }
@@ -392,30 +392,7 @@
                 break;
         }
     }
-   /*  function ChangeTask(): void
-    {
-        if(sessionStorage.getItem("user"))
-        {
-            // swap out the login link for logout
-            $("#task-list").html(
-                `<a id="task-list" class="nav-link" href="#"><i class="fas fa-list-check"></i> Task-List</a>`
-            );
-            $("#logout").on("click", function()
-            {
-                // perform logout
-                sessionStorage.clear();
-
-                 // swap out the logout link for login
-                $("#task-list").html(
-                    `<a class="nav-link" data="task-list"><i class="fas fa-list"></i> Task List</a>`
-                );
-                AddNavigationEvents();
-
-                // redirect back to login
-                LoadLink("login");
-            });
-        }
-    } */
+ 
     function CheckLogin(): void
     {
         // if user is logged in
@@ -425,9 +402,20 @@
             $("#login").html(
                 `<a id="logout" class="nav-link" href="#"><i class="fas fa-sign-out-alt"></i> Logout</a>`
             );
-            $("task-list").appendTo(
-                `<a class="nav-link" data="task-list"><i class="fas fa-th-list"></i> Task-List </a>`
-            ); 
+            //changes the main html nav link icons and wording.
+         /*    $("task-list").html(
+                `<a id="task-list"class="nav-link" href="#"><i class=" fas fa-th-list "></i> Task-List </a>`
+            );  */
+            //Is suppossed to inject the html page of task list, has bugs.
+                /*  $("li").eq(4).after(
+                `
+                <li class="nav-item" id="task-list">
+                <a class="nav-link" data="task-list"><i class="fas fa-list"></i> Task List</a>
+              </li>`); */
+          
+        
+            //AddNavigationEvents();
+            
             $("#logout").on("click", function()
             {
                 // perform logout
@@ -437,14 +425,16 @@
                 $("#login").html(
                     `<a class="nav-link" data="login"><i class="fas fa-sign-in-alt"></i> Login</a>`
                 );
-                $("#task-list").html(
-                    `<a class="nav-link" data="task-list"><i class="fas fa-list"></i> Task List</a>`
-                );
+                //changes it back to its orginal state
+            /*    $("task-list").html(
+                `<a id="task-list"class="nav-link" href="#"><i class=" fas fa-list "></i> Task-List </a>`
+            );  */
                 AddNavigationEvents();
 
                 // redirect back to login
                 LoadLink("login");
             });
+           
         }
     }
 
@@ -525,13 +515,6 @@
 
     }
 
-    /* let page_name = router.ActiveLink; // alias for the Active Link
-    let callback = ActiveLinkCallBack(); // returns a reference to the correct function
-    $.get(`./Views/content/${page_name}.html`, function(html_date)
-    {
-        $("main").html(html_date);
-        callback(); // calling the correct function 
-    }); */
     /**
      * This function adds a new Task to the TaskList
      */
