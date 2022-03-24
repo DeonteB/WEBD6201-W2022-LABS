@@ -581,7 +581,7 @@
            }
           });
  
-         // Edit an Item in the Task List
+         // Edit an Item in the Task List, wasn't able to get edit to work with callback
          $("ul").on("click", ".editButton", function()
          {
             let editText = $(this).parent().parent().children(".editTextInput");

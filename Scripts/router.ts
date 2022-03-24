@@ -139,6 +139,7 @@ router.AddTable([
     "/contact-list",
     "/products",
     "/register",
+    //adds to the table
     "/task-list",
     "/login",
     "/edit"

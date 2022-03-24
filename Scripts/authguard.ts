@@ -3,6 +3,7 @@
 {
     let protected_routes: string[] = [
         "contact-list",
+        //adds authguard
         "task-lisk"
     ];
 
