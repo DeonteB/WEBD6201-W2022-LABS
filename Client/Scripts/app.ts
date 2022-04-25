@@ -1,5 +1,11 @@
 // IIFE -- Immediately Invoked Function Express
 // AKA anonymous self-executing function
+/**
+ * Deonte Bayliss
+ * WEBD6201
+ * April 4th 2022
+ * Tom Tsiliopoulos
+ */
 
 "use strict";
 (function()
@@ -35,10 +41,7 @@
         My main goal is to create amazing projects and show case them.</p>`);
 
 
-        $("main").append(`
-        <article>
-            <p id="ArticleParagraph" class="mt-3">This is the Article Paragraph</p>
-            </article>`);
+        
     }
 
     function DisplayAboutPage(): void

@@ -1,4 +1,11 @@
 // modules for express server functionality
+/**
+ * Deonte Bayliss
+ * WEBD6201
+ * April 4th 2022
+ * Tom Tsiliopoulos
+ */
+
 import createError from 'http-errors';
 import express, { NextFunction } from 'express';
 import path from 'path';
