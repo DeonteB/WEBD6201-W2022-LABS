@@ -46,16 +46,22 @@
         console.log("About Us Page");
 
         $("body").append(`<article class="container">
-        <h4> Learn More About Deonte
+        <img src="../Assets/images/DBgoat.png" alt="Deonte logo" width="100" height="100" />
+        </article>`);
+        $("body").append(`<article class="container">
+        <h4> Learn More About Deonte Bayliss
         </h4>
         </article>`);
+       
+        $("body").append(`<article class="container">
+        <img src="../Assets/images/Deonte.jfif" alt="Deonte" width="150" height="150" />
+        </article>`);
+       
 
         $("body").append(`<article class="container">
-        <p id="ArticleParagraph" class ="mt-3"> In this section you can learn more about me, and the things I enjoy.
+        <p id="ArticleParagraph" class ="mt-3"> In this section you can learn more about me.
         </p>
         </article>`);
-
-
         $("body").append(`<article class="container">
         <h5> About - Deonte 
         </h5>
@@ -73,11 +79,98 @@
     function DisplayProjectsPage(): void
     {
         console.log("Our Projects Page");
+
+        
+        $("main").append(`<article class="container">
+        <p id="ArticleParagraph" class ="mt-3">This page features Deonte's past projects.
+
+        </p>
+        </article>`);
+
+        $("body").append(`
+        <article class="container">
+        <h5> Deonte's Projects</h5>
+        <img src="../Assets/images/Alucine2019poster.jpg" alt="aluCine Poster" width="450" height="600" />
+        </article>`);
+
+        
+        $("body").append(`<article class="container">
+        <p id="ArticleParagraph" class ="mt-3">
+        Deonte's first project is poster made for a film festival back in 2019, it was a project that had to work on with aluCine. 
+        During this time I had to design a graphic that would be used for all advertisement media. I made this poster using adobe photoshop and adobe illustrator.
+        From this art work I was able to make more such as a small animation were parts poster come alive and much more.
+
+        </p>
+        </article>`);
+
+        $("body").append(`<article class="container">
+        <img src="../Assets/images/Lab1.jpg" alt="Lab Screenshot" width="650" height="400" />
+        </article>`);
+
+        
+        $("body").append(`<article class="container">
+        <p id="ArticleParagraph" class ="mt-3">
+        The second project that Deonte has is of C++, it is a lab project that demonstrates the use of my C++ skills.
+        This is a program which takes the scores of three archers for a total of four rounds and out puts them, for every round. 
+        At the end of the program, it tells you the overall average. 
+        This program also has validation checks to make sure the user puts in a whole number and does not input anything else that would be wrong like letters.
+
+        </p>
+        </article>`);
     }
 
     function DisplayServicesPage(): void
     {
         console.log("Our Services Page");
+        
+        $("body").append(`<article class="container">
+        <h4> Deonte's Skills and servirces I Offer You!
+        </h4>
+        </article>`);
+
+        $("body").append(`<article class="container">
+        <p id="ArticleParagraph" class ="mt-3">This page features Deonte's skill sets.
+        Each skill has helped us in many ways, whether it be for school or for a job our skills have made a good impact in our lives. Each skill has been gained and practiced.
+        These are the skills we can offer and do for you.
+
+        </p>
+        </article>`);
+
+
+        $("body").append(`<article class="container">
+        <p id="ArticleParagraph" class ="mt-3">My two skills that I think are the best that I would like to showcase are photography and
+        graphic design.
+        Deontes first skill is photography, I started doing photography when I was younger it quickly became one of my favorite pass times. 
+        It got to the point were I was skilled enough to get a job doing it. One of my first jobs was taking pictures at a company for their events and products.
+        Photography is one of my best skills as it has lead to me deveopling more skills like editing on adobe softwares and being able to create graphics like icons. 
+        If you have a need for a photographer I am your guy, I can edit, I can color correct and much more.
+
+        </p>
+        </article>`);
+        
+        $("body").append(`<article class="container">
+        <h5> Photography - Deonte
+        </h5><img src="../Assets/images/DSC00089.jpg" alt="Photo of butterfly" width="350" height="400" />
+        </article>`);
+
+        
+       
+        
+        
+       
+     
+
+        $("body").append(`<article class="container">
+        <p id="ArticleParagraph" class ="mt-3">Deontes' second skill is graphic design, I am able to design lots of graphics and have working expreince doing so.
+        This is a skill that can also be transfered into helping design images and icons for sites and even images. I can help code your website and build images that go along with it.
+      
+        </p>
+        </article>`);
+
+        $("body").append(`<article class="container">
+        <h5> Graphic Design - Deonte
+        </h5><img src="../Assets/images/GDone.png" alt="Design of Whale" width="350" height="400" />
+        </article>`);
     }
 
     /**
@@ -164,7 +257,7 @@
     function DisplayContactListPage()
     {
         console.log("Contact-List Page");
-
+        
         $("a.delete").on("click", function(event)
         {
             if(!confirm("Are you sure?"))
