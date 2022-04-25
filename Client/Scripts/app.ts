@@ -30,7 +30,10 @@
             location.href = "/about";
         });
 
-        $("main").append(`<p id="MainParagraph" class="mt-3">This is the Main Paragraph</p>`);
+        $("main").append(`<p id="MainParagraph" class="mt-3">Hi, this website showcases my projects as well as work I have done in the past.
+        
+        My main goal is to create amazing projects and show case them.</p>`);
+
 
         $("main").append(`
         <article>
@@ -41,6 +44,30 @@
     function DisplayAboutPage(): void
     {
         console.log("About Us Page");
+
+        $("body").append(`<article class="container">
+        <h4> Learn More About Deonte
+        </h4>
+        </article>`);
+
+        $("body").append(`<article class="container">
+        <p id="ArticleParagraph" class ="mt-3"> In this section you can learn more about me, and the things I enjoy.
+        </p>
+        </article>`);
+
+
+        $("body").append(`<article class="container">
+        <h5> About - Deonte 
+        </h5>
+        </article>`);
+
+        $("body").append(`<article class="container">
+        <p id="ArticleParagraph" class ="mt-3">Deonte is a Computer Programming student at Durham college. 
+        I have been taking Computer programming for over a year and have learned many new things. 
+        I have taking classes in C++, C#, HTML, Python, and much more. During this time, I developed my skills by doing labs and ices to get better and better at what I do.
+
+        </p>
+        </article>`);
     }
 
     function DisplayProjectsPage(): void
