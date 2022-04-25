@@ -86,13 +86,6 @@
 
         </p>
         </article>`);
-
-        $("body").append(`
-        <article class="container">
-        <h5> Deonte's Projects</h5>
-        <img src="../Assets/images/Alucine2019poster.jpg" alt="aluCine Poster" width="450" height="600" />
-        </article>`);
-
         
         $("body").append(`<article class="container">
         <p id="ArticleParagraph" class ="mt-3">
@@ -103,8 +96,10 @@
         </p>
         </article>`);
 
-        $("body").append(`<article class="container">
-        <img src="../Assets/images/Lab1.jpg" alt="Lab Screenshot" width="650" height="400" />
+        $("body").append(`
+        <article class="container">
+        <h5> Deonte's Projects</h5>
+        <img src="../Assets/images/Alucine2019poster.jpg" alt="aluCine Poster" width="450" height="600" />
         </article>`);
 
         
@@ -117,6 +112,28 @@
 
         </p>
         </article>`);
+
+        $("body").append(`<article class="container">
+        <img src="../Assets/images/Lab1.jpg" alt="Lab Screenshot" width="650" height="400" />
+        </article>`);
+
+
+        
+        $("body").append(`<article class="container">
+        <p id="ArticleParagraph" class ="mt-3">
+        The Third project that I have done is of C++, it is a lab project that demonstrates the use of my C++ skills.
+        This is a program is a text reader, was program to read and write a file. For the demo I created a file that had information in it,
+        Then I wrote code to change how the text would be format and look in another file. 
+        This program also has validation checks to make sure the user puts has a file to open and a file to write to.
+
+        </p>
+        </article>`);
+        
+        $("body").append(`<article class="container">
+        <img src="../Assets/images/Lab6.jpg" alt="Lab Screenshot" width="650" height="400" />
+        </article>`);
+
+
     }
 
     function DisplayServicesPage(): void
@@ -124,13 +141,21 @@
         console.log("Our Services Page");
         
         $("body").append(`<article class="container">
-        <h4> Deonte's Skills and servirces I Offer You!
+        <h4> Deonte's Skills and Servirces I Offer You!
         </h4>
+        </article>`);
+
+        $("main").append(`<article class="container">
+        <p id="ArticleParagraph" class ="mt-3">What I can do for you.
+        Some services I can offer you are Photography, Graphic Design, Html, JS, PHP, C#, C++ and much more. Each services was gained from the skills listed down below. 
+        
+
+        </p>
         </article>`);
 
         $("body").append(`<article class="container">
         <p id="ArticleParagraph" class ="mt-3">This page features Deonte's skill sets.
-        Each skill has helped us in many ways, whether it be for school or for a job our skills have made a good impact in our lives. Each skill has been gained and practiced.
+        Each skill has helped me in many ways, whether it be for school or for a job our skills have made a good impact in our lives. Each skill has been gained and practiced.
         These are the skills we can offer and do for you.
 
         </p>
@@ -143,7 +168,7 @@
         Deontes first skill is photography, I started doing photography when I was younger it quickly became one of my favorite pass times. 
         It got to the point were I was skilled enough to get a job doing it. One of my first jobs was taking pictures at a company for their events and products.
         Photography is one of my best skills as it has lead to me deveopling more skills like editing on adobe softwares and being able to create graphics like icons. 
-        If you have a need for a photographer I am your guy, I can edit, I can color correct and much more.
+        If you have a need for a photographer I am your guy, I can edit, I can color correct and much more. You need somthing done regrading photography I'm your guy.
 
         </p>
         </article>`);
@@ -153,16 +178,13 @@
         </h5><img src="../Assets/images/DSC00089.jpg" alt="Photo of butterfly" width="350" height="400" />
         </article>`);
 
-        
-       
-        
-        
        
      
 
         $("body").append(`<article class="container">
         <p id="ArticleParagraph" class ="mt-3">Deontes' second skill is graphic design, I am able to design lots of graphics and have working expreince doing so.
         This is a skill that can also be transfered into helping design images and icons for sites and even images. I can help code your website and build images that go along with it.
+        As a service I'm ready to design anything you need for you websites, logos, postcards, and much more.
       
         </p>
         </article>`);
@@ -257,7 +279,7 @@
     function DisplayContactListPage()
     {
         console.log("Contact-List Page");
-        
+
         $("a.delete").on("click", function(event)
         {
             if(!confirm("Are you sure?"))
